@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cardgan Engenharia</title>
+</head>
+<script>
+
+function enviarWhatsapp(event){
+
+    event.preventDefault();
+
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const telefone = document.getElementById("telefone").value;
+    const mensagem = document.getElementById("mensagem").value;
+
+    const texto =
+`Olá, gostaria de solicitar um atendimento.
+
+Nome: ${nome}
+Telefone: ${telefone}
+E-mail: ${email}
+
+Mensagem:
+${mensagem}`;
+
+    const numero = "5511944614808";
+
+    const url =
+    `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+
+    window.open(url, "_blank");
+
+}
+
+</script>
+
+
+<body>
+<header>
+  <img src="assets/logoSFundo.png" alt="Cardgan" class="logo">
+
+  <nav>
+    <a href="#">Início</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#solucoes">Projetos</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <a href="#contato" class="btn-orcamento1" style="text-decoration:none;">Solicitar orçamento</a>
+</header>    
+
+<section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <h4><img src="assets/menos.png"> SOLUÇÕES COMPLETAS PARA</h4>
+        <h1>ENTRADA DE ENERGIA</h1>
+        <P>Especialista em baixa, média e alta tensão. Fornecendo materiais, projetos e soluções completas para sua obra</P>
+
+        <div class="hero-buttons">
+            <a href="#contato" class="btn-orcamento" style="text-decoration:none;">Solicitar orçamento</a>
+            <a href="https://wa.me/5511944614808?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="btn-whatsapp" style="text-decoration:none;"><img src="assets/image.png">Whatsapp</a>
+        </div>
+    </div>
+</section>
+
+<section class="servicos">
+    <div class="card-servico">
+        <div class="card-icon">
+            <img src="assets/postepadrao.png"> 
+            <h3>Poste Padrão</h3>
+            <p>Instalação e fornecimento.</p>
+        </div>
+    </div>
+    <div class="card-servico">
+        <div class="card-icon">
+            <img src="assets/centromediçao.png"> 
+            <h3>Centro de Medição</h3>
+            <p>Padrão concessionária.</p>
+        </div>
+    </div>
+    <div class="card-servico">
+        <div class="card-icon">
+            <img src="assets/materiaiseletricos.png"> 
+            <h3>Materiais Elétricos</h3>
+            <p>Peças e acessórios.</p>
+        </div>
+    </div>
+    <div class="card-servico">
+        <div class="card-icon">
+            <img src="assets/projetos.png"> 
+            <h3>Projetos Elétricos</h3>
+            <p>Residencial, Comercial e Industrial</p>
+        </div>
+    </div>
+</section>
+
+<section id="produtos" class="nossos-produtos">
+    <div class="texto-nossos-produtos">
+        <H2>NOSSOS PRODUTOS</H2>
+    </div>
+    <div class="produtos-cards">
+        <div class="card-produtos">
+            <img src="assets/postesimagem.jpg">
+            <h3>Postes Padrão</h3>
+            <a href="produtos.html?categoria=postes" class="btn-produto">VER PRODUTOS</a>
+        </div>
+    
+        <div class="card-produtos">
+            <img src="assets/postesimagem.jpg">
+            <h3>Caixas de Medição</h3>
+            <a href="produtos.html?categoria=caixas" class="btn-produto">VER PRODUTOS</a>
+        </div>
+
+        <div class="card-produtos">
+            <img src="assets/postesimagem.jpg">
+            <h3>Disjuntores</h3>
+            <a href="produtos.html?categoria=disjuntores" class="btn-produto">VER PRODUTOS</a>
+        </div>
+
+        <div class="card-produtos">
+            <img src="assets/postesimagem.jpg">
+            <h3>Cabos Elétricos</h3>
+            <a href="produtos.html?categoria=cabos" class="btn-produto">VER PRODUTOS</a>
+        </div>
+
+        <div class="card-produtos">
+            <img src="assets/postesimagem.jpg">
+            <h3>Conectores</h3>
+            <a href="produtos.html?categoria=conectores" class="btn-produto">VER PRODUTOS</a>
+        </div>
+
+        <div class="card-produtos">
+            <img src="assets/postesimagem.jpg">
+            <h3>Acessórios</h3>
+            <a href="produtos.html?categoria=acessorios" class="btn-produto">VER PRODUTOS</a>
+        </div>
+    </div>
+</section>
+
+<section id="solucoes" class="solucoes">
+    <h2>SOLUÇÕES DE ENGENHARIA</h2>
+
+    <div class="solucoes-grid">
+
+        <div class="solucao-item">
+            <img src="assets/projeto-eletrico.svg" alt="">
+            <p>Projetos Elétricos</p>
+        </div>
+
+        <div class="solucao-item">
+            <img src="assets/entrada-energia.svg" alt="">
+            <p>Entrada de Energia</p>
+        </div>
+
+        <div class="solucao-item">
+            <img src="assets/concessionaria.svg" alt="">
+            <p>Acompanhamento junto à Concessionária</p>
+        </div>
+
+        <div class="solucao-item">
+            <img src="assets/consultoria.svg" alt="">
+            <p>Consultoria Técnica</p>
+        </div>
+
+        <div class="solucao-item">
+            <img src="assets/dimensionamento.svg" alt="">
+            <p>Dimensionamento de Carga</p>
+        </div>
+
+        <div class="solucao-item">
+            <img src="assets/laudo.svg" alt="">
+            <p>Laudos Técnicos</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="cta-whatsapp"> 
+    <div class="cta-content">
+        <div class="cta-text">
+            <h2>PRECISA DE UMA SOLUÇÃO ELÉTRICA?</h2>
+            <p> Nossa equipe está pronta para atender seu projeto residencial, comercial ou industrial.</p>
+        </div>
+        <a href="https://wa.me/5511944614808?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="btn-whatsapp-cta">
+        <img src="assets/image.png" alt=""> Chamar no Whatsapp
+        </a>
+    </div>
+</section>
+
+<section class="concessionarias">
+    <h2>Trabalhamos com as principais concessionárias</h2>
+    <p>Projetos, aprovações e instalações conforme as normas de cada concessionária.</p>
+    <div class="logos-grid">
+        <div class="logo-item">
+            <img src="assets/EDP-Logo-white.jpeg" alt="EDP">
+        </div>
+        <div class="logo-item">
+            <img src="assets/neoenergia logo.svg" alt="Neoenergia Elektro">
+        </div>
+        <div class="logo-item">
+            <img src="assets/Enel_Brasil_Nova_Marca.svg.png" alt="ENEL">
+        </div>
+        <div class="logo-item">
+            <img src="assets/Logo_CPFL_Energia.png" alt="CPFL">
+        </div>
+    </div>
+
+</section>
+
+<section class="projetos">
+
+    <div class="titulo-projetos">
+        <h2>PROJETOS REALIZADOS</h2>
+        <p>Conheça alguns dos projetos executados pela Cardgan Engenharia.</p>
+    </div>
+
+    <div class="projetos-grid">
+
+        <div class="card-projeto">
+            <img src="assets/projeto1.jpg" alt="Projeto 1">
+            <div class="projeto-info">
+                <h3>Entrada de Energia</h3>
+                <p>Projeto residencial aprovado junto à concessionária.</p>
+            </div>
+        </div>
+
+        <div class="card-projeto">
+            <img src="assets/projeto2.jpg" alt="Projeto 2">
+            <div class="projeto-info">
+                <h3>Centro de Medição</h3>
+                <p>Instalação para empreendimento comercial.</p>
+            </div>
+        </div>
+
+        <div class="card-projeto">
+            <img src="assets/projeto3.jpg" alt="Projeto 3">
+            <div class="projeto-info">
+                <h3>Projeto Industrial</h3>
+                <p>Dimensionamento e execução completa.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="quem-somos">
+
+    <div class="quem-somos-imagem">
+        <img src="assets/fachada.jpeg" alt="Cardgan Engenharia">
+    </div>
+
+    <div class="quem-somos-conteudo">
+
+        <h2>QUEM SOMOS</h2>
+
+        <p>
+            A Cardgan Engenharia atua no segmento elétrico oferecendo
+            soluções completas para entradas de energia, projetos,
+            aprovações junto às concessionárias e fornecimento de
+            materiais elétricos para obras residenciais, comerciais
+            e industriais.
+        </p>
+
+        <div class="diferenciais">
+
+            <div class="diferencial">
+                ✓ Atendimento Especializado
+            </div>
+
+            <div class="diferencial">
+                ✓ Projetos Aprovados
+            </div>
+
+            <div class="diferencial">
+                ✓ Soluções Completas
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="contato"  class="contato">
+
+    <div class="contato-info">
+
+        <h2>CONTATO</h2>
+
+        <div class="info-item">
+            <h3>📞 Telefone</h3>
+            <p>(11) 99999-9999</p>
+        </div>
+
+        <div class="info-item">
+            <h3>📱 WhatsApp</h3>
+            <p>(11) 99999-9999</p>
+        </div>
+
+        <div class="info-item">
+            <h3>📧 E-mail</h3>
+            <p>contato@cardgan.com.br</p>
+        </div>
+
+        <div class="info-item">
+            <h3>📍 Endereço</h3>
+            <p>São Paulo - SP</p>
+        </div>
+
+    </div>
+
+    <form class="form-contato" onsubmit="enviarWhatsapp(event)">
+
+        <input type="text" id="nome" placeholder="Seu nome">
+
+        <input type="email" id="email" placeholder="Seu e-mail">
+
+        <input type="tel" id="telefone" placeholder="Seu telefone">
+
+        <textarea id="mensagem" placeholder="Digite sua mensagem"></textarea>
+
+
+        <button type="submit">
+            Enviar Mensagem
+        </button>
+
+    </form>
+
+</section>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-col">
+            <img src="assets/logoSFundo.png" alt="Cardgan Engenharia" class="footer-logo">
+
+            <p>
+                Soluções completas para entrada de energia,
+                projetos elétricos e fornecimento de materiais
+                para obras residenciais, comerciais e industriais.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h3>Links Rápidos</h3>
+
+            <a href="#inicio">Início</a>
+            <a href="#produtos">Produtos</a>
+            <a href="#solucoes">Projetos</a>
+            <a href="#contato">Contato</a>
+        </div>
+
+        <div class="footer-col">
+            <h3>Contato</h3>
+
+            <p>📞 +55 (11) 94461-4808 </p>
+            <p>📧 contato@cardgan.com.br</p>
+            <p>📍 São Paulo - SP</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>
+            © 2026 Cardgan Engenharia - Todos os direitos reservados.
+        </p>
+    </div>
+
+</footer>
+<script src="carrinho.js"></script>
+<!-- BOTÃO WHATSAPP FIXO -->
+<div style="position:fixed;bottom:20px;left:20px;z-index:9999;width:60px;height:60px;">
+    <a href="https://wa.me/5511944614808?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento."
+       target="_blank"
+       style="width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:.3s;">
+        <img src="assets/image.png" alt="WhatsApp" style="width:32px;height:32px;">
+    </a>
+</div>
+</body>
+</html>

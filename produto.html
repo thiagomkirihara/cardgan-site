@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto - Cardgan Engenharia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== PÁGINA DO PRODUTO ===== */
+        .pagina-produto {
+            padding: 120px 50px 80px;
+            max-width: 1200px;
+            margin: auto;
+            min-height: 100vh;
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb a {
+            color: #0B2E6B;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { margin: 0 8px; }
+
+        /* ===== LAYOUT PRINCIPAL ===== */
+        .produto-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-bottom: 80px;
+        }
+
+        /* ===== GALERIA ===== */
+        .galeria {
+            position: sticky;
+            top: 110px;
+        }
+
+        .galeria-principal {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            display: block;
+            background: #f3f4f6;
+            cursor: zoom-in;
+            transition: .3s;
+        }
+
+        .galeria-principal:hover { opacity: .95; }
+
+        .galeria-thumbs {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .thumb {
+            width: 72px;
+            height: 72px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .thumb:hover, .thumb.ativa {
+            border-color: #F5B400;
+        }
+
+        .sem-imagem {
+            width: 100%;
+            height: 420px;
+            background: #f3f4f6;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: #ddd;
+        }
+
+        /* ===== INFO DO PRODUTO ===== */
+        .produto-detalhes {}
+
+        .badge-cat {
+            display: inline-block;
+            background: #eff6ff;
+            color: #0B2E6B;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .produto-detalhes h1 {
+            color: #0B2E6B;
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .produto-preco {
+            font-size: 38px;
+            font-weight: 700;
+            color: #F5B400;
+            margin-bottom: 25px;
+        }
+
+        .produto-descricao {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* ===== QUANTIDADE ===== */
+        .quantidade-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            margin-bottom: 10px;
+        }
+
+        .quantidade-controle {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 25px;
+            width: fit-content;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .btn-qtd {
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: #f3f4f6;
+            font-size: 20px;
+            cursor: pointer;
+            transition: .2s;
+            color: #0B2E6B;
+            font-weight: 700;
+        }
+
+        .btn-qtd:hover { background: #e5e7eb; }
+
+        #quantidade {
+            width: 56px;
+            height: 44px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0B2E6B;
+            outline: none;
+        }
+
+        /* ===== BOTÕES DE AÇÃO ===== */
+        .produto-acoes {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-carrinho {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #0B2E6B;
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s;
+            width: 100%;
+        }
+
+        .btn-carrinho:hover {
+            background: #08224f;
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp-produto {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: .3s;
+            width: 100%;
+        }
+
+        .btn-whatsapp-produto:hover {
+            background: #1ebe5d;
+            transform: translateY(-2px);
+        }
+
+        /* ===== PRODUTOS RELACIONADOS ===== */
+        .relacionados {
+            margin-top: 20px;
+        }
+
+        .relacionados h2 {
+            color: #0B2E6B;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .relacionados h2::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #F5B400;
+            margin-top: 6px;
+            border-radius: 10px;
+        }
+
+        .relacionados-subtitulo {
+            color: #888;
+            font-size: 15px;
+            margin-bottom: 30px;
+            margin-top: 8px;
+        }
+
+        .relacionados-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.9);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.aberto { display: flex; }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-fechar {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: white;
+            font-size: 36px;
+            cursor: pointer;
+            line-height: 1;
+            background: none;
+            border: none;
+        }
+
+        /* ===== LOADING ===== */
+        .loading-produto {
+            text-align: center;
+            padding: 100px 20px;
+            color: #aaa;
+            font-size: 16px;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 992px) {
+            .produto-layout { grid-template-columns: 1fr; gap: 30px; }
+            .galeria { position: static; }
+            .relacionados-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .pagina-produto { padding: 80px 20px 60px; }
+            .produto-detalhes h1 { font-size: 26px; }
+            .produto-preco { font-size: 30px; }
+            .galeria-principal { height: 280px; }
+            .relacionados-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <img src="assets/logoSFundo.png" alt="Cardgan" class="logo">
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="index.html#solucoes">Projetos</a>
+        <a href="index.html#contato">Contato</a>
+    </nav>
+    <button class="btn-orcamento1">Solicitar orçamento</button>
+</header>
+
+<!-- CONTEÚDO -->
+<div class="pagina-produto" id="conteudoProduto">
+    <div class="loading-produto">Carregando produto...</div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-fechar" onclick="fecharLightbox()">✕</button>
+    <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- CARRINHO FLUTUANTE (carregado pelo carrinho.js) -->
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs, doc, getDoc, orderBy, query }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAgF1ZX49xae0bGJDO9FsmtBfISA1GI3Wg",
+    authDomain: "cardgan-engenharia.firebaseapp.com",
+    projectId: "cardgan-engenharia",
+    storageBucket: "cardgan-engenharia.firebasestorage.app",
+    messagingSenderId: "9870650048",
+    appId: "1:9870650048:web:530aae0e79873bbd9d1b25"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const params = new URLSearchParams(window.location.search);
+const produtoId = params.get("id");
+
+const categoriaLabels = {
+    postes: "Postes", caixas: "Caixas de Medição", disjuntores: "Disjuntores",
+    cabos: "Cabos Elétricos", conectores: "Conectores", acessorios: "Acessórios"
+};
+
+// ===== CARREGAR PRODUTO =====
+async function carregarProduto() {
+    const container = document.getElementById("conteudoProduto");
+
+    if (!produtoId) {
+        container.innerHTML = `<p style="text-align:center;padding:80px;color:#888">Produto não encontrado.</p>`;
+        return;
+    }
+
+    try {
+        const docRef = doc(db, "produtos", produtoId);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+            container.innerHTML = `<p style="text-align:center;padding:80px;color:#888">Produto não encontrado.</p>`;
+            return;
+        }
+
+        const p = { id: docSnap.id, ...docSnap.data() };
+        document.title = `${p.nome} - Cardgan Engenharia`;
+
+        // Imagens: imagem principal + imagens extras
+        const todasImagens = [];
+        if (p.imagem) todasImagens.push(p.imagem);
+        if (p.imagens && Array.isArray(p.imagens)) todasImagens.push(...p.imagens);
+
+        const galeriaHTML = todasImagens.length > 0 ? `
+            <div class="galeria">
+                <img src="${todasImagens[0]}" alt="${p.nome}"
+                     class="galeria-principal" id="imgPrincipal"
+                     onclick="abrirLightbox('${todasImagens[0]}')"
+                     onerror="this.src='assets/postesimagem.jpg'">
+                ${todasImagens.length > 1 ? `
+                <div class="galeria-thumbs">
+                    ${todasImagens.map((img, i) => `
+                        <img src="${img}" class="thumb ${i === 0 ? 'ativa' : ''}"
+                             onclick="trocarImagem('${img}', this)"
+                             onerror="this.style.display='none'">
+                    `).join("")}
+                </div>` : ""}
+            </div>
+        ` : `<div class="sem-imagem">📦</div>`;
+
+        const whatsappMsg = encodeURIComponent(
+            `Olá! Tenho interesse no produto:\n\n*${p.nome}*\nPreço: ${p.preco}\n\nGostaria de mais informações.`
+        );
+
+        container.innerHTML = `
+            <div class="breadcrumb">
+                <a href="index.html">Início</a>
+                <span>›</span>
+                <a href="produtos.html">Produtos</a>
+                <span>›</span>
+                ${p.nome}
+            </div>
+
+            <div class="produto-layout">
+                ${galeriaHTML}
+
+                <div class="produto-detalhes">
+                    <span class="badge-cat">${categoriaLabels[p.categoria] || p.categoria || "Produto"}</span>
+                    <h1>${p.nome}</h1>
+                    <div class="produto-preco">${p.preco}</div>
+                    <p class="produto-descricao">${p.descricao || "Entre em contato para mais informações sobre este produto."}</p>
+
+                    <div class="quantidade-label">Quantidade</div>
+                    <div class="quantidade-controle">
+                        <button class="btn-qtd" onclick="alterarQtd(-1)">−</button>
+                        <input type="number" id="quantidade" value="1" min="1" max="99">
+                        <button class="btn-qtd" onclick="alterarQtd(1)">+</button>
+                    </div>
+
+                    <div class="produto-acoes">
+                        <button class="btn-carrinho" onclick="adicionarAoCarrinho('${p.id}', '${p.nome.replace(/'/g,"\\'")}', '${p.preco}', '${todasImagens[0] || ""}')">
+                            🛒 Adicionar ao Carrinho
+                        </button>
+                        <a class="btn-whatsapp-produto"
+                           href="https://wa.me/5511944614808?text=${whatsappMsg}"
+                           target="_blank">
+                            <img src="assets/image.png" style="width:22px;height:22px" onerror="this.style.display='none'">
+                            Pedir pelo WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relacionados" id="relacionados">
+                <h2>Produtos Relacionados</h2>
+                <p class="relacionados-subtitulo">Outros produtos da categoria ${categoriaLabels[p.categoria] || ""}</p>
+                <div class="relacionados-grid" id="gridRelacionados">
+                    <div style="color:#aaa;font-size:14px">Carregando...</div>
+                </div>
+            </div>
+        `;
+
+        carregarRelacionados(p.categoria, p.id);
+
+    } catch (e) {
+        console.error(e);
+        container.innerHTML = `<p style="text-align:center;padding:80px;color:#888">Erro ao carregar produto.</p>`;
+    }
+}
+
+// ===== RELACIONADOS =====
+async function carregarRelacionados(categoria, idAtual) {
+    const grid = document.getElementById("gridRelacionados");
+    if (!grid) return;
+
+    try {
+        const q = query(collection(db, "produtos"), orderBy("criadoEm", "desc"));
+        const snap = await getDocs(q);
+        let relacionados = [];
+        snap.forEach(d => {
+            if (d.id !== idAtual && d.data().categoria === categoria) {
+                relacionados.push({ id: d.id, ...d.data() });
+            }
+        });
+
+        relacionados = relacionados.slice(0, 4);
+
+        if (relacionados.length === 0) {
+            document.getElementById("relacionados").style.display = "none";
+            return;
+        }
+
+        grid.innerHTML = relacionados.map(p => `
+            <div class="produto-card">
+                <img src="${p.imagem || 'assets/postesimagem.jpg'}" alt="${p.nome}"
+                     onerror="this.src='assets/postesimagem.jpg'">
+                <div class="produto-info">
+                    <h3>${p.nome}</h3>
+                    <p>${p.descricao || ''}</p>
+                    <span class="preco">${p.preco}</span>
+                    <a href="produto.html?id=${p.id}" class="btn-produto-detalhes">Ver Detalhes</a>
+                </div>
+            </div>
+        `).join("");
+
+    } catch (e) {
+        document.getElementById("relacionados").style.display = "none";
+    }
+}
+
+// ===== GALERIA =====
+window.trocarImagem = (url, el) => {
+    document.getElementById("imgPrincipal").src = url;
+    document.getElementById("imgPrincipal").onclick = () => abrirLightbox(url);
+    document.querySelectorAll(".thumb").forEach(t => t.classList.remove("ativa"));
+    el.classList.add("ativa");
+};
+
+window.abrirLightbox = (url) => {
+    document.getElementById("lightboxImg").src = url;
+    document.getElementById("lightbox").classList.add("aberto");
+};
+
+window.fecharLightbox = () => {
+    document.getElementById("lightbox").classList.remove("aberto");
+};
+
+document.getElementById("lightbox").addEventListener("click", (e) => {
+    if (e.target === e.currentTarget) fecharLightbox();
+});
+
+// ===== QUANTIDADE =====
+window.alterarQtd = (delta) => {
+    const input = document.getElementById("quantidade");
+    const nova = Math.max(1, Math.min(99, parseInt(input.value || 1) + delta));
+    input.value = nova;
+};
+
+// ===== CARRINHO =====
+window.adicionarAoCarrinho = (id, nome, preco, imagem) => {
+    const qtd = parseInt(document.getElementById("quantidade").value) || 1;
+    const carrinho = JSON.parse(localStorage.getItem("cardgan_carrinho") || "[]");
+
+    const existe = carrinho.find(i => i.id === id);
+    if (existe) {
+        existe.quantidade += qtd;
+    } else {
+        carrinho.push({ id, nome, preco, imagem, quantidade: qtd });
+    }
+
+    localStorage.setItem("cardgan_carrinho", JSON.stringify(carrinho));
+    atualizarBadgeCarrinho();
+    mostrarToastCarrinho(nome);
+};
+
+function mostrarToastCarrinho(nome) {
+    // Dispara evento para o carrinho.js atualizar
+    window.dispatchEvent(new CustomEvent("carrinhoAtualizado"));
+
+    const t = document.createElement("div");
+    t.style.cssText = `
+        position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);
+        background:#16a34a;color:white;padding:14px 24px;border-radius:10px;
+        font-size:15px;font-weight:600;z-index:9998;transition:.4s;
+        box-shadow:0 10px 30px rgba(0,0,0,.2);white-space:nowrap;
+    `;
+    t.textContent = `✓ ${nome} adicionado ao carrinho!`;
+    document.body.appendChild(t);
+    setTimeout(() => t.style.transform = "translateX(-50%) translateY(0)", 10);
+    setTimeout(() => {
+        t.style.transform = "translateX(-50%) translateY(100px)";
+        setTimeout(() => t.remove(), 400);
+    }, 2500);
+}
+
+function atualizarBadgeCarrinho() {
+    window.dispatchEvent(new CustomEvent("carrinhoAtualizado"));
+}
+
+carregarProduto();
+</script>
+
+<script src="carrinho.js"></script>
+</body>
+</html>

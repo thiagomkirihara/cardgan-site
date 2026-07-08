@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Documento -->
+  <rect x="18" y="8" width="54" height="72" rx="4" stroke="#F5B400" stroke-width="3.5" fill="none"/>
+  <!-- Canto dobrado -->
+  <path d="M58 8 L72 22 L58 22 Z" fill="#F5B400" opacity="0.4"/>
+  <path d="M58 8 L72 22" stroke="#F5B400" stroke-width="2.5"/>
+  <!-- Linhas de texto -->
+  <line x1="28" y1="34" x2="62" y2="34" stroke="#F5B400" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="28" y1="44" x2="62" y2="44" stroke="#F5B400" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="28" y1="54" x2="50" y2="54" stroke="#F5B400" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Selo de aprovação -->
+  <circle cx="62" cy="72" r="18" fill="#0B2E6B" stroke="#F5B400" stroke-width="3"/>
+  <path d="M53 72 L59 78 L71 65" stroke="#F5B400" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

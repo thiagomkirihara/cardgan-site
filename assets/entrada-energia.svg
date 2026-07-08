@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Poste -->
+  <line x1="50" y1="10" x2="50" y2="85" stroke="#F5B400" stroke-width="4" stroke-linecap="round"/>
+  <!-- Braço do poste -->
+  <path d="M50 22 Q65 18 72 22" stroke="#F5B400" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <!-- Isoladores -->
+  <circle cx="72" cy="22" r="4" stroke="#F5B400" stroke-width="2.5" fill="none"/>
+  <circle cx="50" cy="22" r="4" stroke="#F5B400" stroke-width="2.5" fill="none"/>
+  <!-- Fios descendo -->
+  <path d="M72 26 Q80 45 75 65" stroke="#F5B400" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="4 3"/>
+  <path d="M50 26 Q42 45 45 65" stroke="#F5B400" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="4 3"/>
+  <!-- Caixa de medição -->
+  <rect x="30" y="62" width="40" height="28" rx="3" stroke="#F5B400" stroke-width="3.5" fill="none"/>
+  <rect x="36" y="67" width="28" height="16" rx="2" stroke="#F5B400" stroke-width="2" fill="none"/>
+  <!-- Raio elétrico dentro da caixa -->
+  <path d="M47 70 L43 76 L50 76 L46 83" stroke="#F5B400" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Base do poste -->
+  <line x1="40" y1="85" x2="60" y2="85" stroke="#F5B400" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

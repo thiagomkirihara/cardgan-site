@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Gráfico de barras -->
+  <rect x="15" y="55" width="14" height="30" rx="2" fill="#F5B400" opacity="0.5" stroke="#F5B400" stroke-width="2.5"/>
+  <rect x="35" y="38" width="14" height="47" rx="2" fill="#F5B400" opacity="0.7" stroke="#F5B400" stroke-width="2.5"/>
+  <rect x="55" y="22" width="14" height="63" rx="2" fill="#F5B400" stroke="#F5B400" stroke-width="2.5"/>
+  <!-- Seta subindo -->
+  <path d="M76 55 L76 18" stroke="#F5B400" stroke-width="3" stroke-linecap="round"/>
+  <path d="M70 26 L76 18 L82 26" stroke="#F5B400" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Linha base -->
+  <line x1="10" y1="85" x2="90" y2="85" stroke="#F5B400" stroke-width="3" stroke-linecap="round"/>
+  <!-- Raio elétrico -->
+  <path d="M80 8 L74 18 L80 18 L74 28" stroke="#F5B400" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

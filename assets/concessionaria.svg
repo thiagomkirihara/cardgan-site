@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Prédio/empresa -->
+  <rect x="15" y="40" width="30" height="45" rx="2" stroke="#F5B400" stroke-width="3.5" fill="none"/>
+  <rect x="55" y="50" width="30" height="35" rx="2" stroke="#F5B400" stroke-width="3.5" fill="none"/>
+  <!-- Janelas prédio 1 -->
+  <rect x="21" y="47" width="7" height="7" rx="1" fill="#F5B400"/>
+  <rect x="33" y="47" width="7" height="7" rx="1" fill="#F5B400"/>
+  <rect x="21" y="60" width="7" height="7" rx="1" fill="#F5B400"/>
+  <rect x="33" y="60" width="7" height="7" rx="1" fill="#F5B400"/>
+  <!-- Janelas prédio 2 -->
+  <rect x="61" y="57" width="7" height="7" rx="1" fill="#F5B400"/>
+  <rect x="73" y="57" width="7" height="7" rx="1" fill="#F5B400"/>
+  <!-- Seta de conexão -->
+  <path d="M46 62 Q50 55 54 62" stroke="#F5B400" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <polygon points="54,58 54,66 58,62" fill="#F5B400"/>
+  <!-- Telhado -->
+  <path d="M10 40 L30 22 L50 40" stroke="#F5B400" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
