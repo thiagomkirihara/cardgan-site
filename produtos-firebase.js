@@ -14,33 +14,31 @@ import {
 // ==========================================
 
 const firebaseConfig = {
-
     apiKey: "AIzaSyAgF1ZX49xae0bGJDO9FsmtBfISA1GI3Wg",
-
     authDomain: "cardgan-engenharia.firebaseapp.com",
-
     projectId: "cardgan-engenharia",
-
     storageBucket: "cardgan-engenharia.firebasestorage.app",
-
     messagingSenderId: "9870650048",
-
     appId: "1:9870650048:web:530aae0e79873bbd9d1b25"
-
 };
 
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
 
 
 // ==========================================
-// CATEGORIA DA URL
+// NORMALIZAR CATEGORIA
 // ==========================================
 
-const params = new URLSearchParams(window.location.search);
+function normalizarCategoria(valor) {
 
-const categoriaFiltro = params.get("categoria");
+    return String(valor || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim()
+        .toLowerCase();
+
+}
 
 
 // ==========================================
@@ -69,12 +67,11 @@ async function carregarProdutos() {
 
     try {
 
-        // Busca os produtos no Firestore
         const snap = await getDocs(
             collection(db, "produtos")
         );
 
-        let produtos = [];
+        const produtos = [];
 
         snap.forEach((doc) => {
 
@@ -85,41 +82,7 @@ async function carregarProdutos() {
 
         });
 
-        console.log("PRODUTOS DO FIREBASE:", produtos);
-
-
-        // ==========================================
-        // FILTRO VINDO DA URL
-        // ==========================================
-
-        if (categoriaFiltro) {
-
-            produtos = produtos.filter((produto) => {
-
-                return produto.categoria === categoriaFiltro;
-
-            });
-
-            document.querySelectorAll(".filtro").forEach((botao) => {
-
-                botao.classList.remove("ativo");
-
-                if (
-                    botao.dataset.categoria === categoriaFiltro
-                ) {
-
-                    botao.classList.add("ativo");
-
-                }
-
-            });
-
-        }
-
-
-        // ==========================================
-        // NENHUM PRODUTO
-        // ==========================================
+        console.log("PRODUTOS CARREGADOS:", produtos);
 
         if (produtos.length === 0) {
 
@@ -128,20 +91,8 @@ async function carregarProdutos() {
                     grid-column:1/-1;
                     text-align:center;
                     padding:60px;
-                    color:#aaa;
                 ">
-
-                    <div style="
-                        font-size:48px;
-                        margin-bottom:15px;
-                    ">
-                        📦
-                    </div>
-
-                    <p>
-                        Nenhum produto encontrado.
-                    </p>
-
+                    <h3>Nenhum produto cadastrado.</h3>
                 </div>
             `;
 
@@ -150,16 +101,15 @@ async function carregarProdutos() {
 
 
         // ==========================================
-        // MOSTRAR PRODUTOS
+        // MOSTRAR TODOS OS PRODUTOS
         // ==========================================
 
         grid.innerHTML = produtos.map((produto) => {
 
             return `
-
                 <div
                     class="produto-card"
-                    data-categoria="${produto.categoria || ""}"
+                    data-categoria="${normalizarCategoria(produto.categoria)}"
                 >
 
                     <img
@@ -192,15 +142,17 @@ async function carregarProdutos() {
                     </div>
 
                 </div>
-
             `;
 
         }).join("");
 
 
-        // Depois que os cards foram criados,
-        // ativa os filtros
+        // ==========================================
+        // INICIAR FILTROS
+        // ==========================================
+
         iniciarFiltros();
+
 
     } catch (erro) {
 
@@ -214,11 +166,9 @@ async function carregarProdutos() {
                 grid-column:1/-1;
                 text-align:center;
                 padding:60px;
-                color:#aaa;
             ">
-
-                Erro ao carregar produtos.
-
+                <h3>Erro ao carregar produtos.</h3>
+                <p>Abra o console do navegador para verificar o erro.</p>
             </div>
         `;
 
@@ -234,56 +184,48 @@ async function carregarProdutos() {
 function iniciarFiltros() {
 
     const botoes = document.querySelectorAll(".filtro");
-
-    console.log("BOTÕES DE FILTRO:", botoes.length);
-
+    const cards = document.querySelectorAll(".produto-card");
 
     botoes.forEach((botao) => {
 
-        botao.onclick = function () {
+        botao.addEventListener("click", function () {
 
-            const categoria = botao.dataset.categoria;
-
-            console.log(
-                "Filtro selecionado:",
-                categoria
-            );
+            const categoria =
+                normalizarCategoria(
+                    botao.dataset.categoria
+                );
 
 
-            // Remove ativo de todos
+            // Tirar ativo de todos
             botoes.forEach((btn) => {
-
                 btn.classList.remove("ativo");
-
             });
 
 
-            // Ativa o botão clicado
+            // Ativar botão clicado
             botao.classList.add("ativo");
 
 
-            // Pega todos os produtos
-            const cards = document.querySelectorAll(
-                ".produto-card"
-            );
-
-
+            // Mostrar/esconder produtos
             cards.forEach((card) => {
 
-                // BOTÃO TODOS
-                if (!categoria) {
+                const categoriaProduto =
+                    normalizarCategoria(
+                        card.dataset.categoria
+                    );
+
+
+                // TODOS
+                if (categoria === "") {
 
                     card.style.display = "";
 
                     return;
-
                 }
 
 
-                // CATEGORIA ESPECÍFICA
-                if (
-                    card.dataset.categoria === categoria
-                ) {
+                // CATEGORIA
+                if (categoriaProduto === categoria) {
 
                     card.style.display = "";
 
@@ -295,15 +237,49 @@ function iniciarFiltros() {
 
             });
 
-        };
+        });
 
     });
+
+
+    // ==========================================
+    // VERIFICAR CATEGORIA VINDO DA HOME
+    // ==========================================
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const categoriaURL =
+        normalizarCategoria(
+            params.get("categoria")
+        );
+
+
+    if (categoriaURL) {
+
+        const botaoCategoria =
+            Array.from(botoes).find((botao) => {
+
+                return normalizarCategoria(
+                    botao.dataset.categoria
+                ) === categoriaURL;
+
+            });
+
+
+        if (botaoCategoria) {
+
+            botaoCategoria.click();
+
+        }
+
+    }
 
 }
 
 
 // ==========================================
-// INICIA A PÁGINA
+// INICIAR
 // ==========================================
 
 carregarProdutos();
